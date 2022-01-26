@@ -1,0 +1,42 @@
+groups:
+- name: status code != 200
+  rules:
+  - alert: PHPIpam
+    expr: probe_http_status_code{instance="http://172.16.17.24:88/index.php?page=login", job="http_systemas"} != 200
+    for: 15s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "PHPIpam fora"
+      description: "PHPIpam Inacessivel! \n"
+
+  - alert: MKSOLUTIONS
+    expr: probe_http_status_code{instance="http://mk.seatelecom.com.br:8080/mk/login/?sys=MK0", job="http_systemas"} != 200
+    for: 40s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "MK aplicação fora"
+      description: "MK Inacessivel!"
+
+  - alert: NEXTCLOUD
+    expr: probe_http_status_code{instance="https://nextcloud.seasolutions.com.br/login?clear=1", job="http_systemas"} != 200
+    for: 40s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "nextcloud aplicação fora"
+      description: "nextcloud Inacessivel!"
+
+  - alert: METABASE
+    expr: probe_http_status_code{instance="https://bi.seasolutions.com.br/auth/login", job="http_systemas"} != 200
+    for: 40s
+    labels:
+      team: slack_alertmanager
+      severity: critical
+    annotations:
+      summary: "METABASE aplicação fora"
+      description: "METABASE Inacessivel!"

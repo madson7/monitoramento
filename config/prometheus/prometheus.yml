@@ -1,0 +1,308 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+rule_files:
+  - './config/prometheus/alertRules/ms.yml'    
+  - './config/prometheus/alertRules/http_0.yml'
+  - './config/prometheus/alertRules/http_1.yml'
+
+# alertmanager
+alerting:
+  alertmanagers:
+  - scheme: http
+    static_configs:
+    - targets:
+      - "alertmanager:9093"
+
+scrape_configs:
+
+  - job_name: 'fping_ti'
+    scrape_interval: 5s
+    metrics_path: /probe
+    static_configs:
+    - targets:
+      - "138.121.244.102"
+      - "177.155.104.78"
+      - "170.254.79.21"
+      - "54.87.75.173"
+      - "191.252.51.246"
+    relabel_configs:
+    - source_labels: [__address__]
+      target_label: __param_target
+    - source_labels: [__param_target]
+      target_label: instance
+    - target_label: __address__
+      replacement: fping:9605
+
+  - job_name: 'fping_chip'
+    scrape_interval: 5s
+    metrics_path: /probe
+    static_configs:
+    - targets:
+      - "172.16.1.176"
+      - "172.16.1.177"
+      - "172.16.1.178"
+      - "172.16.1.179"
+      - "172.16.1.180"
+      - "172.16.1.181"
+    relabel_configs:
+    - source_labels: [__address__]
+      target_label: __param_target
+    - source_labels: [__param_target]
+      target_label: instance
+    - target_label: __address__
+      replacement: fping:9605
+
+  - job_name: 'mikrotik_exporter'
+    scrape_interval: 5s
+    metrics_path: /metrics
+    static_configs:
+    - targets:
+      - 172.16.17.24:9436
+
+  - job_name: 'MK_BKP'
+    metrics_path: '/metrics'
+    params:
+      format: [prometheus]
+    basic_auth:
+      username: "admin"
+      password: "teste"
+    static_configs:
+    - targets: ['172.16.17.179:9091']
+
+  - job_name: 'MK_METABASE'
+    metrics_path: '/metrics'
+    params:
+      format: [prometheus]
+    basic_auth:
+      #username: "admin"
+      #password: "teste"
+    static_configs:
+    - targets: ['172.16.17.178:9100']
+
+
+  - job_name: 'MK_DB'
+    metrics_path: '/metrics'
+    params:
+      format: [prometheus]
+    basic_auth:
+      username: "admin"
+      password: "teste"
+    static_configs:
+    - targets: ['172.16.17.185:9091']
+
+  - job_name: 'MK_APP'
+    metrics_path: '/metrics'
+    params:
+      format: [prometheus]
+    basic_auth:
+      username: "admin"
+      password: "teste"
+    static_configs:
+    - targets: ['170.82.180.19:9091']
+
+  - job_name: 'Backup_TI_2T'
+    metrics_path: '/metrics'
+    params:
+      format: [prometheus]
+    basic_auth:
+      username: "admin"
+      password: "teste"
+    static_configs:
+    - targets: ['172.16.17.19:9091']
+
+  - job_name: 'TI_APLICACOES'
+    metrics_path: '/metrics'
+    params:
+      format: [prometheus]
+    basic_auth:
+      username: "admin"
+      password: "teste"
+    static_configs:
+    - targets: ['172.16.17.24:9091']
+
+  - job_name: 'XGSPON'
+    metrics_path: '/metrics'
+    params:
+      format: [prometheus]
+    basic_auth:
+      username: "admin"
+      password: "teste"
+    static_configs:
+    - targets: ['172.16.17.59:9091']
+
+  - job_name: 'SERVICOS_TI/NOC'
+    metrics_path: '/metrics'
+    params:
+      format: [prometheus]
+    basic_auth:
+      username: "admin"
+      password: "teste"
+    static_configs:
+    - targets: ['172.16.17.25:9100']
+
+  - job_name: 'INFRA-01-PA-CST'
+    metrics_path: '/metrics'
+    params:
+      format: [prometheus]
+    basic_auth:
+      username: "admin"
+      password: "teste"
+    static_configs:
+    - targets: ['172.18.4.2:9100']
+
+  - job_name: 'SMARTISP/TALK'
+    metrics_path: '/metrics'
+    params:
+      format: [prometheus]
+    # basic_auth:
+      # username: "admin"
+      # password: "teste"
+    static_configs:
+    - targets: ['17077.talk.smartisp.com.br:9100']
+
+  - job_name: 'http_systemas'
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    static_configs:
+      - targets:
+        - "http://mk.seatelecom.com.br:8080/mk/login/?sys=MK0"
+        - "http://nextcloud.seasolutions.com.br/login"
+        # PHPIpam
+        - "http://172.16.17.24:88/index.php?page=login"
+        - "https://cloud.seasolutions.com.br/auth/login/?next="
+        - "https://app.pulsus.mobi/login"
+
+        - "https://seatelecom.smartisp.com.br/login"
+        - "https://seatelecom.smartisp.com.br/Painel/login/index/"
+        - "https://seatelecom.smartisp.com.br"
+
+        - "https://unifi.seasolutions.com.br:8443/manage/account/login"
+        - "https://bi.seasolutions.com.br/auth/login"
+        - "http://170.82.180.26/login/index/"
+        - "https://telecom.digicade.com.br/geosite-telecom/autenticacao/login.jsp"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115
+
+  - job_name: 'icmp'
+    metrics_path: /probe
+    params:
+      module: [icmp]
+    static_configs:
+      - targets:
+        - "172.19.0.1"
+        - "172.19.0.2"
+        - "172.19.0.3"
+        - "172.19.0.4"
+        - "172.19.0.5"
+        - "172.19.0.6"
+        - "172.19.0.7"
+        - "172.19.0.8"
+        - "172.19.0.9"
+        #
+        - "172.16.0.206"
+        - "172.16.17.177"
+        - "172.16.0.204"
+        # Unifi's
+        - "10.10.10.226"
+        - "10.10.10.224"
+        - "10.10.10.227"
+        - "10.10.10.225"
+        - "10.10.10.214"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115
+
+  - job_name: 'ti_interno'
+    metrics_path: '/metrics'
+    params:
+      format: [prometheus]
+    basic_auth:
+      username: "admin"
+      password: "teste"
+    static_configs:
+    - targets: ['170.82.180.131:9092']
+
+  - job_name: 'tcp_cftv'
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]
+    static_configs:
+      - targets:
+        # SAC
+        - "192.168.2.200:8010"
+        # NOC
+        - "192.168.2.37:8001"
+        # ADM
+        - "192.168.2.12:8000"
+        # BRAGANÇA
+        - "100.85.32.25:15000"
+        # CAPITÃO POÇO
+        - "100.75.0.1:10201"
+        # CURUÇA
+        - "100.72.7.247:59403"
+        # FINANCEIRO
+        - "192.168.10.200:8000"
+        # IGARAPÉ AÇU
+        - "100.88.0.1:10202"
+        # MARAPANIM
+        - "100.65.16.247:59405"
+        # SALINAS
+        - "100.80.15.81:26201"
+        # SANTA IZABEL
+        - "100.71.1.34:16802"
+        # SANTA MARIA
+        - "100.76.0.45:19002"
+        # SÃO MIGUEL
+        - "100.77.0.5:11001"
+        # CAPANEMA
+        - "100.78.1.133:36666"
+        # NVR A - PRIMEIRO DE MAIO
+        - "172.19.0.7:8000"
+        # NVR B - PRIMEIRO DE MAIO
+        - "172.19.0.8:8000"
+        # NVR C - PRIMEIRO DE MAIO
+        - "172.19.0.9:8000"
+        # PARAGOMINAS
+        - "100.83.5.222:54401"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115
+
+  - job_name: 'NVR_Teste'
+    metrics_path: /probe
+    basic_auth:
+      username: "admin"
+      password: "teste"
+    params:
+      module: [http_2xx]
+    static_configs:
+      - targets:
+        - "http://100.88.0.1:10203/ISAPI/Streaming/channels/102/picture"
+        - "http://100.88.0.1:10203/ISAPI/Streaming/channels/202/picture"
+        - "http://100.88.0.1:10203/ISAPI/Streaming/channels/302/picture"
+        - "http://100.88.0.1:10203/ISAPI/Streaming/channels/402/picture"
+        - "http://100.88.0.1:10203/ISAPI/Streaming/channels/502/picture"
+        - "http://100.88.0.1:10203/ISAPI/Streaming/channels/702/picture"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115

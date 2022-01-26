@@ -1,0 +1,140 @@
+{
+    "servers": [
+        {
+            "camera": "NVR PRIMEIRO DE MAIO - A",
+            "username": "admin",
+            "password": "teset",
+            "ip": "172.19.0.7",
+            "channel": "101",
+            "port": "8001"
+        },
+        {
+            "camera": "NVR PRIMEIRO DE MAIO - A",
+            "username": "admin",
+            "password": "teset",
+            "ip": "172.19.0.7",
+            "channel": "201",
+            "port": "8002"
+        },
+        {
+            "camera": "NVR PRIMEIRO DE MAIO - A",
+            "username": "admin",
+            "password": "teset",
+            "ip": "172.19.0.7",
+            "channel": "301",
+            "port": "8003"
+        },
+        {
+            "camera": "NVR PRIMEIRO DE MAIO - A",
+            "username": "admin",
+            "password": "teset",
+            "ip": "172.19.0.7",
+            "channel": "401",
+            "port": "8004"
+        },
+        {
+            "camera": "NVR PRIMEIRO DE MAIO - A",
+            "username": "admin",
+            "password": "teset",
+            "ip": "172.19.0.7",
+            "channel": "501",
+            "port": "8005"
+        },
+        {
+            "camera": "NVR PRIMEIRO DE MAIO - A",
+            "username": "admin",
+            "password": "teset",
+            "ip": "172.19.0.7",
+            "channel": "601",
+            "port": "8006"
+        },
+        {
+            "camera": "NVR PRIMEIRO DE MAIO - A",
+            "username": "admin",
+            "password": "teset",
+            "ip": "172.19.0.7",
+            "channel": "701",
+            "port": "8007"
+        },
+        {
+            "camera": "NVR PRIMEIRO DE MAIO - A",
+            "username": "admin",
+            "password": "teset",
+            "ip": "172.19.0.7",
+            "channel": "801",
+            "port": "8008"
+        },
+        {
+            "camera": "NVR PRIMEIRO DE MAIO - A",
+            "username": "admin",
+            "password": "teset",
+            "ip": "172.19.0.7",
+            "channel": "901",
+            "port": "8009"
+        },
+        {
+            "camera": "NVR PRIMEIRO DE MAIO - A",
+            "username": "admin",
+            "password": "teset",
+            "ip": "172.19.0.7",
+            "channel": "1001",
+            "port": "8010"
+        },
+        {
+            "camera": "NVR PRIMEIRO DE MAIO - A",
+            "username": "admin",
+            "password": "teset",
+            "ip": "172.19.0.7",
+            "channel": "1101",
+            "port": "8011"
+        },
+        {
+            "camera": "NVR PRIMEIRO DE MAIO - A",
+            "username": "admin",
+            "password": "teset",
+            "ip": "172.19.0.7",
+            "channel": "1201",
+            "port": "8012"
+        },
+        {
+            "camera": "NVR PRIMEIRO DE MAIO - A",
+            "username": "admin",
+            "password": "teset",
+            "ip": "172.19.0.7",
+            "channel": "1301",
+            "port": "8013"
+        },
+        {
+            "camera": "NVR PRIMEIRO DE MAIO - A",
+            "username": "admin",
+            "password": "teset",
+            "ip": "172.19.0.7",
+            "channel": "1401",
+            "port": "8014"
+        },
+        {
+            "camera": "NVR PRIMEIRO DE MAIO - A",
+            "username": "admin",
+            "password": "teset",
+            "ip": "172.19.0.7",
+            "channel": "1501",
+            "port": "8015"
+        },
+        {
+            "camera": "NVR PRIMEIRO DE MAIO - A",
+            "username": "admin",
+            "password": "teset",
+            "ip": "172.19.0.7",
+            "channel": "1601",
+            "port": "8016"
+        },
+        {
+            "camera": "NVR PRIMEIRO DE MAIO - A",
+            "username": "admin",
+            "password": "teset",
+            "ip": "172.19.0.7",
+            "channel": "1701",
+            "port": "8016"
+        }
+    ]
+}

@@ -1,0 +1,103 @@
+groups:
+- name: host
+  rules:
+  - alert: high_storage_load
+    expr: (node_filesystem_size_bytes{device="/dev/nvme0n1"} - node_filesystem_free_bytes{device="/dev/nvme0n1"}) / node_filesystem_size_bytes{device="/dev/nvme0n1"}  * 100 > 85
+    for: 30s
+    labels:
+      team: slack_alertmanager
+      severity: warning
+    annotations:
+      summary: "Server storage is almost full"
+      description: "Host storage usage is {{ humanize $value}}%. na instância  {{ $labels.instance }} com job {{ $labels.job }}."
+
+  - alert: high_storage_load
+    expr: (node_filesystem_size_bytes{device="/dev/sda1"} - node_filesystem_free_bytes{device="/dev/sda1"}) / node_filesystem_size_bytes{device="/dev/sda1"}  * 100 > 85
+    for: 30s
+    labels:
+      team: slack_alertmanager
+      severity: warning
+    annotations:
+      summary: "Server storage is almost full"
+      description: "Host storage usage is {{ humanize $value}}%. na instância  {{ $labels.instance }} com job {{ $labels.job }}."
+
+  - alert: high_cpu_load
+    expr: node_load5{instance="170.82.180.19:9091", job="MK_APP"} > 65
+    for: 30s
+    labels:
+      team: slack_alertmanager
+      severity: warning
+    annotations:
+        summary: "Servidor sob alta carga"
+        description: "O host está sob alta carga, a carga média de 5m está em {{ $value}}. na instância  {{ $labels.instance }} com job {{ $labels.job }}."
+
+  - alert: high_cpu_load
+    expr: node_load5{instance="17077.talk.smartisp.com.br:9100", job="SMARTISP/TALK"} > 65
+    for: 30s
+    labels:
+      team: slack_alertmanager
+      severity: warning
+    annotations:
+        summary: "Servidor sob alta carga"
+        description: "O host está sob alta carga, a carga média de 5m está em {{ $value}}. na instância  {{ $labels.instance }} com job {{ $labels.job }}."
+
+  - alert: high_cpu_load
+    expr: node_load5{instance="172.16.17.179:9091", job="MK_BKP"} > 65
+    for: 30s
+    labels:
+      team: slack_alertmanager
+      severity: warning
+    annotations:
+        summary: "Servidor sob alta carga"
+        description: "O host está sob alta carga, a carga média de 5m está em {{ $value}}. na instância  {{ $labels.instance }} com job {{ $labels.job }}."
+
+  - alert: high_cpu_load
+    expr: node_load5{instance="172.16.17.185:9091", job="MK_DB"} > 65
+    for: 30s
+    labels:
+      team: slack_alertmanager
+      severity: warning
+    annotations:
+        summary: "Servidor sob alta carga"
+        description: "O host está sob alta carga, a carga média de 5m está em {{ $value}}. na instância  {{ $labels.instance }} com job {{ $labels.job }}."
+
+  - alert: high_cpu_load
+    expr: node_load5{instance="172.16.17.19:9091", job="Backup_TI_2T"} > 65
+    for: 30s
+    labels:
+      team: slack_alertmanager
+      severity: warning
+    annotations:
+        summary: "Servidor sob alta carga"
+        description: "O host está sob alta carga, a carga média de 5m está em {{ $value}}. na instância  {{ $labels.instance }} com job {{ $labels.job }}."
+
+  - alert: high_cpu_load
+    expr: node_load5{instance="172.16.17.24:9091", job="TI_APLICACOES"} > 65
+    for: 30s
+    labels:
+      team: slack_alertmanager
+      severity: warning
+    annotations:
+        summary: "Servidor sob alta carga"
+        description: "O host está sob alta carga, a carga média de 5m está em {{ $value}}. na instância  {{ $labels.instance }} com job {{ $labels.job }}."
+
+  - alert: high_cpu_load
+    expr: node_load5{instance="172.16.17.25:9091", job="MK_SERVICOS_TI/NOC"} > 65
+    for: 30s
+    labels:
+      team: slack_alertmanager
+      severity: warning
+    annotations:
+        summary: "Servidor sob alta carga"
+        description: "O host está sob alta carga, a carga média de 5m está em {{ $value}}. na instância  {{ $labels.instance }} com job {{ $labels.job }}."
+
+  - alert: high_cpu_load
+    expr: node_load5{instance="172.16.17.59:9091", job="XGSPON"} > 65
+    for: 30s
+    labels:
+      team: slack_alertmanager
+      severity: warning
+    annotations:
+        summary: "Servidor sob alta carga"
+        description: "O host está sob alta carga, a carga média de 5m está em {{ $value}}. na instância  {{ $labels.instance }} com job {{ $labels.job }}."
+
