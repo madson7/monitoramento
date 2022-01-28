@@ -46,7 +46,7 @@ services:
     networks:
       - monitoring_sea
     ports:
-      - 3111:3000
+      - 3000:3000
     deploy:
       replicas: 1
       update_config:
@@ -177,7 +177,7 @@ services:
     networks:
       - monitoring_sea
     ports:
-      - 2514:1514
+      - 1514:1514
     deploy:
       replicas: 1
       update_config:
